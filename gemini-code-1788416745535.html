@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AERIUM HVAC — Інженерні системи ОВІК, Укриття та Димовидалення</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #F4F7F5;
+            --surface: #FFFFFF;
+            --primary: #2A6B56;
+            --primary-hover: #1F5242;
+            --text-dark: #121820;
+            --text-muted: #5A6573;
+            --border: #E1E6E3;
+            --radius: 16px;
+            --shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
+        body { background-color: var(--bg-main); color: var(--text-dark); line-height: 1.6; }
+
+        header {
+            position: sticky; top: 0; background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+            z-index: 1000; padding: 16px 5%; display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .logo { font-size: 24px; font-weight: 800; color: var(--text-dark); display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo-icon { width: 42px; height: 42px; display: block; }
+        .logo span { color: var(--primary); font-size: 14px; font-weight: 600; background: rgba(42, 107, 86, 0.1); padding: 3px 8px; border-radius: 6px; }
+
+        .header-contacts { display: flex; align-items: center; gap: 12px; }
+        .phone-btn { font-weight: 700; color: var(--primary); text-decoration: none; font-size: 18px; }
+        .btn { background: var(--primary); color: #FFF; padding: 12px 24px; border-radius: 8px; font-weight: 700; text-decoration: none; border: none; cursor: pointer; display: inline-block; transition: 0.2s; }
+        .btn:hover { background: var(--primary-hover); }
+
+        .hero { padding: 60px 5% 40px; max-width: 1200px; margin: 0 auto; text-align: center; }
+        .hero-logo-box { display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 20px; }
+        .hero-logo-icon { width: 64px; height: 64px; }
+        .hero h1 { font-size: 38px; font-weight: 800; line-height: 1.2; margin-bottom: 16px; text-transform: uppercase; }
+        .hero p { font-size: 18px; color: var(--text-muted); max-width: 800px; margin: 0 auto 28px; }
+
+        .container { max-width: 1200px; margin: 50px auto; padding: 0 5%; }
+        .section-title { font-size: 28px; font-weight: 800; margin-bottom: 24px; text-transform: uppercase; letter-spacing: -0.5px; }
+
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+        .card { background: var(--surface); padding: 28px; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); }
+        .card h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; color: var(--primary); }
+        .card p { color: var(--text-muted); font-size: 15px; }
+
+        /* Етапи роботи */
+        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+        .step-card { background: var(--surface); border: 1px solid var(--border); padding: 20px; border-radius: var(--radius); position: relative; }
+        .step-num { font-size: 32px; font-weight: 800; color: var(--primary); opacity: 0.3; margin-bottom: 8px; }
+        .step-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+        .step-card p { font-size: 13px; color: var(--text-muted); }
+
+        /* FAQ */
+        .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 12px; }
+        .faq-item h4 { font-size: 18px; font-weight: 700; margin-bottom: 8px; color: var(--text-dark); }
+        .faq-item p { color: var(--text-muted); font-size: 15px; }
+
+        .calc-box { background: var(--surface); border-radius: var(--radius); padding: 36px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+        .calc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 24px; }
+        .form-group { display: flex; flex-direction: column; gap: 8px; }
+        .form-group label { font-weight: 600; font-size: 14px; }
+        .form-control { padding: 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-main); font-size: 15px; outline: none; }
+
+        .calc-result { background: #EAF3EF; padding: 20px; border-radius: 12px; margin-bottom: 24px; border: 1px solid #C2DFD2; }
+        .calc-result h4 { color: var(--primary); font-size: 18px; margin-bottom: 6px; }
+
+        /* Social Block */
+        .social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
+        .social-card { background: var(--surface); border: 1px solid var(--border); padding: 24px; border-radius: var(--radius); display: flex; align-items: center; gap: 16px; text-decoration: none; color: var(--text-dark); transition: transform 0.2s, border-color 0.2s; }
+        .social-card:hover { transform: translateY(-3px); border-color: var(--primary); }
+        .social-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; color: #FFF; flex-shrink: 0; }
+        .tg-bg { background: #0088CC; }
+        .wa-bg { background: #25D366; }
+        .insta-bg { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+
+        .b2b-banner { background: #121820; color: #FFF; padding: 40px; border-radius: var(--radius); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .b2b-banner h3 { font-size: 24px; font-weight: 700; }
+        .b2b-banner p { color: #A0AEC0; max-width: 600px; margin-top: 8px; }
+
+        .brands { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-top: 20px; }
+        .brand-pill { background: var(--surface); border: 1px solid var(--border); padding: 12px 24px; border-radius: 30px; font-weight: 700; color: var(--text-dark); }
+
+        /* Floating Quick Contact Widget */
+        .floating-widget { position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 2000; }
+        .float-btn { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #FFF; font-size: 22px; text-decoration: none; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: transform 0.2s; }
+        .float-btn:hover { transform: scale(1.1); }
+
+        footer { background: var(--surface); border-top: 1px solid var(--border); padding: 40px 5%; text-align: center; margin-top: 60px; }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 28px; }
+            .b2b-banner { text-align: center; justify-content: center; }
+            .header-contacts { gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Плаваючі кнопки швидкого зв'язку -->
+    <div class="floating-widget">
+        <a href="https://wa.me/380633877203" target="_blank" class="float-btn" style="background: #25D366;" title="WhatsApp">💬</a>
+        <a href="https://t.me/your_telegram_channel" target="_blank" class="float-btn" style="background: #0088CC;" title="Telegram">✈️</a>
+        <a href="tel:+380633877203" class="float-btn" style="background: var(--primary);" title="Зателефонувати">📞</a>
+    </div>
+
+    <header>
+        <a href="#" class="logo">
+            <svg class="logo-icon" viewBox="0 0 100 100" fill="none">
+                <circle cx="50" cy="50" r="45" fill="#2A6B56"/>
+                <circle cx="35" cy="40" r="6" fill="#FFFFFF"/>
+                <path d="M 60 42 Q 65 35 70 42" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+                <path d="M 30 62 Q 50 78 70 62" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"/>
+            </svg>
+            AERIUM <span>HVAC</span>
+        </a>
+        <div class="header-contacts">
+            <a href="https://wa.me/380633877203" target="_blank" class="btn" style="background:#25D366; padding: 8px 14px; font-size: 13px;">WhatsApp</a>
+            <a href="https://t.me/your_telegram_channel" target="_blank" class="btn" style="background:#0088CC; padding: 8px 14px; font-size: 13px;">Telegram</a>
+            <a href="tel:+380633877203" class="phone-btn">+380633877203</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-logo-box">
+            <svg class="hero-logo-icon" viewBox="0 0 100 100" fill="none">
+                <circle cx="50" cy="50" r="45" fill="#2A6B56"/>
+                <circle cx="35" cy="40" r="6" fill="#FFFFFF"/>
+                <path d="M 60 42 Q 65 35 70 42" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+                <path d="M 30 62 Q 50 78 70 62" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"/>
+            </svg>
+            <span style="font-size: 32px; font-weight: 800; letter-spacing: -1px;">AERIUM HVAC</span>
+        </div>
+        <h1>Проєктування та монтаж ОВІК, укриттів та димовидалення</h1>
+        <p>Інженерні рішення під ключ: від приватних будинків і офісів до бомбосховищ (СПП) та підземних паркінгів за нормами ДБН.</p>
+        <a href="tel:+380633877203" class="btn" style="padding: 16px 32px; font-size: 16px;">Замовити консультацію інженера</a>
+    </section>
+
+    <!-- Переваги -->
+    <div class="container">
+        <h2 class="section-title">Чому обирають нас</h2>
+        <div class="grid-3">
+            <div class="card">
+                <h3>Відповідність ДБН та СПП</h3>
+                <p>Усі рішення для захисних споруд розробляються строго за ДБН В.2.2-5:2023 із проходженням експертизи.</p>
+            </div>
+            <div class="card">
+                <h3>Комплексний підхід</h3>
+                <p>Беремо на себе все: від первинних розрахунків та вибору обладнання до монтажу, пусконалагодження та сервісу.</p>
+            </div>
+            <div class="card">
+                <h3>Фіксований кошторис</h3>
+                <p>Ціна обладнання та робіт фіксується у договорі й не змінюється під час реалізації об'єкта.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Послуги -->
+    <div class="container">
+        <h2 class="section-title">Наші напрямки</h2>
+        <div class="grid-3">
+            <div class="card">
+                <h3>Системи ОВІК</h3>
+                <p>Проєктування та встановлення опалення, припливно-витяжної вентиляції з рекуперацією та кондиціонування (спліт, мультиспліт, VRV/VRF).</p>
+            </div>
+            <div class="card">
+                <h3>Укриття, СПП та Сховища</h3>
+                <p>Оснащення захисних споруд цивільного захисту за вимогами ДБН. Встановлення систем фільтровентиляції (ФВА) та герметизація.</p>
+            </div>
+            <div class="card">
+                <h3>Паркінги та Димовидалення</h3>
+                <p>Протидимовий захист, підпор повітря в шахти ліфтів, витяжна вентиляція паркінгів із контролем CO та автоматикою.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Етапи роботи -->
+    <div class="container">
+        <h2 class="section-title">Як ми працюємо</h2>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-num">01</div>
+                <h4>Заявка та аналіз</h4>
+                <p>Збираємо вхідні дані, вивчаємо креслення або виїжджаємо на об'єкт.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">02</div>
+                <h4>Проєктування та КП</h4>
+                <p>Розраховуємо повітрообмін/теплонавантаження та готуємо прозорий кошторис.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">03</div>
+                <h4>Поставка обладнання</h4>
+                <p>Завозимо сертифіковані вентиляційні установки, клапани та автоматику.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">04</div>
+                <h4>Монтаж та запуск</h4>
+                <p>Проводимо монтажні роботи, пусконалагодження та передаємо об'єкт в експлуатацію.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Калькулятор -->
+    <div class="container" id="calc">
+        <h2 class="section-title">Онлайн-калькулятор та орієнтовний просчунок</h2>
+        <div class="calc-box">
+            <div class="calc-grid">
+                <div class="form-group">
+                    <label>1. Тип об'єкта</label>
+                    <select class="form-control" id="calcType" onchange="updateCalc()">
+                        <option value="hvac">Квартира / Приватний будинок</option>
+                        <option value="commercial">Офіс / Комерція</option>
+                        <option value="shelter">Укриття / СПП / Бомбосховище</option>
+                        <option value="parking">Паркінг / Димовидалення</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>2. Площа приміщення (м²)</label>
+                    <input type="number" class="form-control" id="calcArea" value="50" oninput="updateCalc()">
+                </div>
+                <div class="form-group">
+                    <label>3. Клас обладнання</label>
+                    <select class="form-control" id="calcClass" onchange="updateCalc()">
+                        <option value="1">Економ (Українські/базові бренди)</option>
+                        <option value="1.3" selected>Стандарт (Оптимальний вибір)</option>
+                        <option value="1.7">Преміум (Максимальна якість)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="calc-result">
+                <h4>Орієнтовна вартість комплексу (обладнання + роботи):</h4>
+                <div id="calcOutput" style="font-size: 24px; font-weight: 800; color: #121820;">від 45,000 грн</div>
+                <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">*Точний кошторис складається інженером після аналізу креслень або виїзду на об'єкт.</p>
+            </div>
+
+            <form onsubmit="event.preventDefault(); alert('Дякуємо за заявку! Інженер AERIUM HVAC зателефонує вам найближчим часом.');">
+                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                    <input type="tel" class="form-control" placeholder="Ваш номер телефону" required style="flex: 1; min-width: 200px;">
+                    <button type="submit" class="btn" style="padding: 12px 28px;">Отримати КП за 15 хвилин</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="container">
+        <h2 class="section-title">Часті запитання (FAQ)</h2>
+        <div class="faq-item">
+            <h4>Чи надаєте ви паспорт на вентиляцію для укриттів (СПП)?</h4>
+            <p>Так, після завершення пусконалагоджувальних робіт надаємо повний комплект виконавчої документації, паспорт вентиляційної системи та сертифікати на фільтровентиляційне обладнання (ФВА).</p>
+        </div>
+        <div class="faq-item">
+            <h4>Чи можна замовити лише проєкт без монтажу?</h4>
+            <p>Так, ми виконуємо окрему розробку розділів ОВІК, ВЗ (вентиляція захисних споруд) та ДВ (димовидалення) зі всіма необхідними розрахунками та кресленнями.</p>
+        </div>
+        <div class="faq-item">
+            <h4>Як швидко виїжджає інженер на об'єкт?</h4>
+            <p>У межах міста та області виїзд можливий у день звернення або на наступний робочий день за домовленістю.</p>
+        </div>
+    </div>
+
+    <!-- Блок соцмереж -->
+    <div class="container">
+        <h2 class="section-title">Зв'язок та соцмережі</h2>
+        <div class="social-grid">
+            <a href="https://wa.me/380633877203" target="_blank" class="social-card">
+                <div class="social-icon wa-bg">💬</div>
+                <div>
+                    <h3 style="font-size: 18px; font-weight: 700;">WhatsApp</h3>
+                    <p style="font-size: 13px; color: var(--text-muted);">Швидкий чат з інженером та прорахунок</p>
+                </div>
+            </a>
+            <a href="https://t.me/your_telegram_channel" target="_blank" class="social-card">
+                <div class="social-icon tg-bg">✈️</div>
+                <div>
+                    <h3 style="font-size: 18px; font-weight: 700;">Telegram-канал</h3>
+                    <p style="font-size: 13px; color: var(--text-muted);">Креслення, кейси монтажу та новини ДБН</p>
+                </div>
+            </a>
+            <a href="https://instagram.com/your_instagram" target="_blank" class="social-card">
+                <div class="social-icon insta-bg">📸</div>
+                <div>
+                    <h3 style="font-size: 18px; font-weight: 700;">Instagram</h3>
+                    <p style="font-size: 13px; color: var(--text-muted);">Фото та відео виконаних об'єктів</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- B2B Співпраця -->
+    <div class="container">
+        <div class="b2b-banner">
+            <div>
+                <h3>Співпраця з інсталяційними та будівельними компаніями</h3>
+                <p>Ми активно співпрацюємо з монтажними організаціями, виконробами та генпідрядниками. Надаємо партнерські ціни на обладнання, професійний підбір та повний інженерний супровід.</p>
+            </div>
+            <a href="tel:+380633877203" class="btn" style="background: #FFF; color: var(--text-dark);">Стати партнером</a>
+        </div>
+    </div>
+
+    <!-- Бренди -->
+    <div class="container" style="text-align: center;">
+        <h2 class="section-title">Обладнання, з яким ми працюємо</h2>
+        <div class="brands">
+            <div class="brand-pill">Aerostar</div>
+            <div class="brand-pill">Vents</div>
+            <div class="brand-pill">Systemair</div>
+            <div class="brand-pill">Salda</div>
+            <div class="brand-pill">Daikin</div>
+            <div class="brand-pill">Mitsubishi Electric</div>
+            <div class="brand-pill">Cooper&Hunter</div>
+            <div class="brand-pill">Vaillant</div>
+            <div class="brand-pill">Bosch</div>
+            <div class="brand-pill">Danfoss</div>
+        </div>
+    </div>
+
+    <footer>
+        <p><strong>AERIUM HVAC ENGINEERING</strong> — Інженерні мережі, ОВІК, Укриття та Димовидалення</p>
+        <p style="margin-top: 8px;">
+            Телефон: <a href="tel:+380633877203" class="phone-btn">+380633877203</a> | 
+            <a href="https://wa.me/380633877203" target="_blank" style="color:var(--primary); font-weight:700; text-decoration:none;">WhatsApp</a> | 
+            <a href="https://t.me/your_telegram_channel" target="_blank" style="color:var(--primary); font-weight:700; text-decoration:none;">Telegram</a> | 
+            <a href="https://instagram.com/your_instagram" target="_blank" style="color:var(--primary); font-weight:700; text-decoration:none;">Instagram</a>
+        </p>
+    </footer>
+
+    <script>
+        function updateCalc() {
+            const type = document.getElementById('calcType').value;
+            const area = parseFloat(document.getElementById('calcArea').value) || 0;
+            const classMult = parseFloat(document.getElementById('calcClass').value);
+
+            let baseRate = 900;
+            if (type === 'commercial') baseRate = 1200;
+            if (type === 'shelter') baseRate = 1800;
+            if (type === 'parking') baseRate = 1500;
+
+            const total = Math.round(area * baseRate * classMult);
+            document.getElementById('calcOutput').innerText = 'від ' + total.toLocaleString('uk-UA') + ' грн';
+        }
+    </script>
+</body>
+</html>
